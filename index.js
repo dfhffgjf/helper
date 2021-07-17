@@ -9,6 +9,7 @@ window.fbAsyncInit = function() {
     FB.AppEvents.logPageView();
 
     FB.getLoginStatus(resp => {
+        console.log(resp)
         if(resp.status === 'connected')
             console.log('U are connected')
     })
