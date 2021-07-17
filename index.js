@@ -64,8 +64,6 @@ window.fbAsyncInit = function() {
         const json = await respMedia.json();
         console.log(respMedia, json)
 
-
-
     })
 
 };
