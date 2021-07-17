@@ -16,7 +16,7 @@ window.fbAsyncInit = function() {
             console.log('U are connected')
             user = {...resp.authResponse}
 
-            const respFetch = await fetch(`https://graph.facebook.com/v11.0/${user.userID}?fields=instagram_business_account&access_token=${user.accessToken}`)
+            const respFetch = await fetch(`https://graph.facebook.com/v11.0/me/accounts?fields=instagram_business_account&access_token=${user.accessToken}`)
 
             if(respFetch.ok) {
                 const json = await respFetch.json();
