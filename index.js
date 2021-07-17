@@ -49,15 +49,15 @@ window.fbAsyncInit = function() {
         }
 
         const imageURL = "https://i.pinimg.com/736x/2e/3c/af/2e3caf86f37e22ebc2bb29ed0929b092--s-cartoons-dog-art.jpg";
-        // const respMedia = await fetch(`https://graph.facebook.com/v11.0/${bussines_accounts.id}?fields=ig_id,username,profile_picture_url&access_token=${user.accessToken}`);
-        //
-        // if(!respGetIgId.ok) {
-        //     console.log('ERROR GET ID IG')
-        //     return false
-        // }
-        //
-        // const ig_id = (await respGetIgId.json()).ig_id;
-        //
+        const respUser = await fetch(`https://graph.facebook.com/v11.0/${bussines_accounts.id}?fields=ig_id,username,profile_picture_url&access_token=${user.accessToken}`);
+
+        if(!respUser.ok) {
+            console.log('ERROR GET ID IG')
+            return false
+        }
+
+        console.log(respUser, await respUser.json())
+
         const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}`, {
             method: "POST"
         })
