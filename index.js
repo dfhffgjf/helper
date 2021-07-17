@@ -64,6 +64,13 @@ window.fbAsyncInit = function() {
         const json = await respMedia.json();
         console.log(respMedia, json)
 
+        const respPost = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${json.id}`);
+
+        console.log(respPost, (await respPost.json()))
+
+        if(respPost.ok)
+            console.log('EBAT')
+
     })
 
 };
