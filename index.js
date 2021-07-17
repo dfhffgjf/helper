@@ -60,7 +60,7 @@ window.fbAsyncInit = function() {
 
         console.log('THIS JSON USER', respUser, jsonUser)
 
-        const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}&access_token=${user.accessToken}`, {
+        const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}&caption=%23This post from Graph API&access_token=${user.accessToken}`, {
             method: "POST"
         })
         const json = await respMedia.json();
