@@ -10,7 +10,11 @@ window.fbAsyncInit = function() {
 
     let user = {
 
-    };
+    },
+    bussines_accounts = {
+
+    }
+    ;
 
     document.querySelector('.login-status').addEventListener("click", () => {
         FB.getLoginStatus(async resp => {
@@ -24,6 +28,9 @@ window.fbAsyncInit = function() {
                 if(respFetch.ok) {
                     const json = await respFetch.json();
                     console.log(json)
+                    bussines_accounts = {
+                        ...json.data[0]
+                    }
                 }
             }
         })
@@ -33,6 +40,19 @@ window.fbAsyncInit = function() {
         FB.logout(resp => {
             console.log('Log out')
         })
+    })
+
+    document.querySelector('.create-post').addEventListener("click", async () => {
+        if(!bussines_accounts?.id) {
+            console.log('ERROR BUSSINES ACCTOUNTS')
+            return false
+        }
+
+        const imageURL = "https://i.pinimg.com/736x/2e/3c/af/2e3caf86f37e22ebc2bb29ed0929b092--s-cartoons-dog-art.jpg";
+        const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}&caption=2e3caf86f37e22ebc2bb29ed0929b092--s-cartoons-dog-art`)
+        const json = await respMedia.json();
+        console.log(respMedia, json)
+
     })
 
 };
