@@ -71,11 +71,18 @@ window.fbAsyncInit = function() {
 
             const jsonMediaID = json.id;
 
-            const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
-                method: "POST"
-            })
+            const intervalSetup = setInterval(async () => {
+                const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
+                    method: "POST"
+                })
 
-            console.log(respPublish, await respPublish.json())
+                const json = await respPublish.json();
+
+                console.log(respPublish, json)
+
+                if(respPublish.ok)
+                    clearInterval(intervalSetup)
+            }, 5000)
         }
 
     })
