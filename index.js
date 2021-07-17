@@ -48,7 +48,7 @@ window.fbAsyncInit = function() {
             return false
         }
 
-        const imageURL = "http://www.home-baseddogtraining.com/files/MasterImages/stk203253rke.jpg";
+        const imageURL = "https://ua.all.biz/img/ua/catalog/more/37396303_kurtka_luxurious_dog.jpeg";
         const respUser = await fetch(`https://graph.facebook.com/v11.0/${bussines_accounts.id}?fields=ig_id,username,profile_picture_url&access_token=${user.accessToken}`);
 
         if(!respUser.ok) {
