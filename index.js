@@ -56,13 +56,15 @@ window.fbAsyncInit = function() {
             return false
         }
 
-        console.log(respUser, await respUser.json())
+        const jsonUser = await respUser.json();
 
-        const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}`, {
+        console.log('THIS JSON USER', respUser, jsonUser)
+
+        const respMedia = await fetch(`https://graph.facebook.com/${jsonUser.id}/media?image_url=${imageURL}`, {
             method: "POST"
         })
         const json = await respMedia.json();
-        console.log(respMedia, json)
+        console.log('THIS RESP CREATE', respMedia, json)
 
     })
 
