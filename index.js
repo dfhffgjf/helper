@@ -48,7 +48,7 @@ window.fbAsyncInit = function() {
             return false
         }
 
-        const imageURL = "https://i.pinimg.com/736x/2e/3c/af/2e3caf86f37e22ebc2bb29ed0929b092--s-cartoons-dog-art.jpg";
+        const imageURL = "http://www.home-baseddogtraining.com/files/MasterImages/stk203253rke.jpg";
         const respUser = await fetch(`https://graph.facebook.com/v11.0/${bussines_accounts.id}?fields=ig_id,username,profile_picture_url&access_token=${user.accessToken}`);
 
         if(!respUser.ok) {
@@ -60,7 +60,7 @@ window.fbAsyncInit = function() {
 
         console.log('THIS JSON USER', respUser, jsonUser)
 
-        const respMedia = await fetch(`https://graph.facebook.com/${jsonUser.id}/media?image_url=${imageURL}`, {
+        const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}`, {
             method: "POST"
         })
         const json = await respMedia.json();
