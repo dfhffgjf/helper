@@ -21,7 +21,7 @@ window.fbAsyncInit = function() {
             const respFetch = await fetch(`https://graph.facebook.com/${user.userID}?fields=id,name&access_token=${user.accessToken}`)
 
             if(respFetch.ok) {
-                const json = respFetch.json();
+                const json = await respFetch.json();
                 console.log(json)
             }
         }
