@@ -6,27 +6,33 @@ window.fbAsyncInit = function() {
         version    : 'v11.0'
     });
 
-    FB.logout(resp => {
-        console.log('Log out')
-    })
+
 
     let user = {
 
     };
 
-    FB.getLoginStatus(async resp => {
-        console.log(resp)
-        if(resp.status === 'connected') {
-            console.log('U are connected')
-            user = {...resp.authResponse}
+    document.querySelector('.login-status').addEventListener("click", () => {
+        FB.getLoginStatus(async resp => {
+            console.log(resp)
+            if(resp.status === 'connected') {
+                console.log('U are connected')
+                user = {...resp.authResponse}
 
-            const respFetch = await fetch(`https://graph.facebook.com/v11.0/me/accounts?fields=instagram_business_account&access_token=${user.accessToken}`)
+                const respFetch = await fetch(`https://graph.facebook.com/v11.0/me/accounts?fields=instagram_business_account&access_token=${user.accessToken}`)
 
-            if(respFetch.ok) {
-                const json = await respFetch.json();
-                console.log(json)
+                if(respFetch.ok) {
+                    const json = await respFetch.json();
+                    console.log(json)
+                }
             }
-        }
+        })
+    })
+
+    document.querySelector('.log-out').addEventListener("click", () => {
+        FB.logout(resp => {
+            console.log('Log out')
+        })
     })
 
 };
