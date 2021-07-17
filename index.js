@@ -66,6 +66,17 @@ window.fbAsyncInit = function() {
         const json = await respMedia.json();
         console.log('THIS RESP CREATE', respMedia, json)
 
+        if(respMedia.ok) {
+
+            const jsonMediaID = json.id;
+
+            const respPublish = await fetch(`https://graph.facebook.com/17841405822304914/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
+                method: "POST"
+            })
+
+            console.log(respPublish, await respPublish.json())
+        }
+
     })
 
 };
