@@ -66,11 +66,19 @@ window.fbAsyncInit = function() {
         const json = await respMedia.json();
         console.log('THIS RESP CREATE', respMedia, json)
 
+        const respMedia2 = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}&caption=%23This post from Graph API&access_token=${user.accessToken}`, {
+            method: "POST"
+        })
+
+        const json2 = await respMedia2.json();
+        console.log('THIS RESP2 CREATE', respMedia2, json2)
+
         if(respMedia.ok) {
 
             const jsonMediaID = json.id;
+            const jsonMediaID2 = json2.id;
 
-            const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
+            const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${jsonMediaID},${jsonMediaID2}&access_token=${user.accessToken}`, {
                 method: "POST"
             })
 
