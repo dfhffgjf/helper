@@ -70,7 +70,7 @@ window.fbAsyncInit = function() {
 
             const jsonMediaID = json.id;
 
-            const respPublish = await fetch(`https://graph.facebook.com/17841405822304914/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
+            const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
                 method: "POST"
             })
 
