@@ -49,9 +49,7 @@ window.fbAsyncInit = function() {
         }
 
         const imageURL = "https://i.pinimg.com/736x/2e/3c/af/2e3caf86f37e22ebc2bb29ed0929b092--s-cartoons-dog-art.jpg";
-        const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}&caption=%232e3caf86f37e22ebc2bb29ed0929b092--s-cartoons-dog-art`, {
-            method: "POST"
-        })
+        const respMedia = await fetch(`https://graph.facebook.com/v11.0/${bussines_accounts.id}?fields=ig_id&access_token=${user.accessToken}`)
         const json = await respMedia.json();
         console.log(respMedia, json)
 
