@@ -64,12 +64,16 @@ window.fbAsyncInit = function() {
         const json = await respMedia.json();
         console.log(respMedia, json)
 
-        const respPost = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${json.id}`);
+        if(respMedia.ok) {
+            const respPost = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${json.id}`, {
+                method: "POST"
+            });
 
-        console.log(respPost, (await respPost.json()))
+            console.log(respPost, (await respPost.json()))
 
-        if(respPost.ok)
-            console.log('EBAT')
+            if(respPost.ok)
+                console.log('EBAT')
+        }
 
     })
 
