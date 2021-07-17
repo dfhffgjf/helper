@@ -48,7 +48,7 @@ window.fbAsyncInit = function() {
             return false
         }
 
-        const imageURL = "https://ua.all.biz/img/ua/catalog/more/37396303_kurtka_luxurious_dog.jpeg";
+        const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
         const respUser = await fetch(`https://graph.facebook.com/v11.0/${bussines_accounts.id}?fields=ig_id,username,profile_picture_url&access_token=${user.accessToken}`);
 
         if(!respUser.ok) {
@@ -60,7 +60,7 @@ window.fbAsyncInit = function() {
 
         console.log('THIS JSON USER', respUser, jsonUser)
 
-        const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?image_url=${imageURL}&caption=%23This post from Graph API&access_token=${user.accessToken}`, {
+        const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?media_type=VIDEO&video_url=${videoURL}&caption=%23This post from Graph API&access_token=${user.accessToken}`, {
             method: "POST"
         })
         const json = await respMedia.json();
