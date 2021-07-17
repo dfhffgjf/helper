@@ -6,9 +6,6 @@ window.fbAsyncInit = function() {
         version    : 'v11.0'
     });
 
-    FB.logout(function(response) {
-    });
-
     let user = {
 
     };
