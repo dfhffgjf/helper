@@ -8,10 +8,20 @@ window.fbAsyncInit = function() {
 
     FB.AppEvents.logPageView();
 
-    FB.getLoginStatus(resp => {
+    let user = {
+
+    };
+
+    FB.getLoginStatus(async resp => {
         console.log(resp)
-        if(resp.status === 'connected')
+        if(resp.status === 'connected') {
             console.log('U are connected')
+            user = {...resp.authResponse}
+
+            const respFetch = await fetch(`https://graph.facebook.com/${user.userID}?fields=id,name&access_token=${user.accessToken}`)
+
+            console.log(respFetch)
+        }
     })
 
 };
