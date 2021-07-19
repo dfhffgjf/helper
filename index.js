@@ -30,7 +30,7 @@ window.fbAsyncInit = function() {
                     json.data.forEach(el => {
                         bussines_accounts.push(el.id);
                     })
-                    console.log('Accounts', bussines_accounts)
+                    console.log('Accounts', bussines_accounts, json, json.data)
                 }
             }
         })
