@@ -14,6 +14,7 @@ window.fbAsyncInit = function() {
     bussines_accounts = {
 
     }
+    check = 0
     ;
 
     document.querySelector('.login-status').addEventListener("click", () => {
@@ -54,22 +55,24 @@ window.fbAsyncInit = function() {
 
         if(date && date > 0) {
             const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
-            const respUser = await fetch(`https://graph.facebook.com/v11.0/${bussines_accounts.id}?fields=ig_id,username,profile_picture_url&access_token=${user.accessToken}`);
+            const imageUrl = "https://vistapointe.net/images/catdog-5.jpg";
 
-            if(!respUser.ok) {
-                console.log('ERROR GET ID IG')
-                return false
+            let respMedia;
+
+            if(check === 0) {
+                respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
+                    method: "POST"
+                })
+                const json = await respMedia.json();
+                console.log('THIS RESP CREATE', respMedia, json)
+                check++;
+            } else {
+                respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
+                    method: "POST"
+                })
+                const json = await respMedia.json();
+                console.log('THIS RESP CREATE', respMedia, json)
             }
-
-            const jsonUser = await respUser.json();
-
-            console.log('THIS JSON USER', respUser, jsonUser)
-
-            const respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
-                method: "POST"
-            })
-            const json = await respMedia.json();
-            console.log('THIS RESP CREATE', respMedia, json)
 
             if(respMedia.ok) {
 
