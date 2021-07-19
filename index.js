@@ -54,31 +54,32 @@ window.fbAsyncInit = function() {
         console.log(date)
 
         if(date && date > 0) {
-            const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
-            const imageUrl = "https://vistapointe.net/images/catdog-5.jpg";
+            const awaitTime = setInterval(async () => {
+                const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
+                const imageUrl = "https://vistapointe.net/images/catdog-5.jpg";
 
-            let respMedia, json;
+                let respMedia, json;
 
-            if(check === 0) {
-                respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
-                    method: "POST"
-                })
-                json = await respMedia.json();
-                console.log('THIS RESP CREATE', respMedia, json)
-                check++;
-            } else {
-                respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
-                    method: "POST"
-                })
-                json = await respMedia.json();
-                console.log('THIS RESP CREATE', respMedia, json)
-            }
+                if(check === 0) {
+                    respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
+                        method: "POST"
+                    })
+                    json = await respMedia.json();
+                    console.log('THIS RESP CREATE', respMedia, json)
+                    check++;
+                } else {
+                    respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
+                        method: "POST"
+                    })
+                    json = await respMedia.json();
+                    console.log('THIS RESP CREATE', respMedia, json)
+                }
 
-            if(respMedia.ok) {
+                if(respMedia.ok) {
 
-                const jsonMediaID = json.id;
+                    const jsonMediaID = json.id;
 
-                const awaitTime = setInterval(() => {
+
                     clearInterval(awaitTime)
                     const intervalSetup = setInterval(async () => {
                         const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
@@ -92,8 +93,9 @@ window.fbAsyncInit = function() {
                         if(respPublish.ok)
                             clearInterval(intervalSetup)
                     }, 5000)
-                }, date)
-            }
+
+                }
+            }, date)
         }
 
     })
