@@ -49,10 +49,10 @@ window.fbAsyncInit = function() {
             return false
         }
 
-        const date = document.getElementById("date");
+        const date = document.getElementById("date").value;
         console.log(date)
 
-        if(date) {
+        if(date && false) {
             const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
             const respUser = await fetch(`https://graph.facebook.com/v11.0/${bussines_accounts.id}?fields=ig_id,username,profile_picture_url&access_token=${user.accessToken}`);
 
