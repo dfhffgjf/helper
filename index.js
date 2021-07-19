@@ -55,6 +55,7 @@ window.fbAsyncInit = function() {
             bussines_accounts.map(async id => {
                 console.log('Create interval', id)
                 const awaitTime = setInterval(async (accountId = id) => {
+                    clearInterval(awaitTime)
                     const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
                     const imageUrl = "https://vistapointe.net/images/catdog-5.jpg";
 
@@ -81,7 +82,6 @@ window.fbAsyncInit = function() {
                         const jsonMediaID = json.id;
 
 
-                        clearInterval(awaitTime)
                         const intervalSetup = setInterval(async () => {
                             const respPublish = await fetch(`https://graph.facebook.com/${accountId}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
                                 method: "POST"
