@@ -27,13 +27,10 @@ window.fbAsyncInit = function() {
 
                 if(respFetch.ok) {
                     const json = await respFetch.json();
-                    console.log(json.data)
                     json.data.forEach(el => {
-                        bussines_accounts.push(instagram_business_account.id);
+                        bussines_accounts.push(el.id);
                     })
-                    bussines_accounts = {
-                        id: json.data[0].instagram_business_account.id
-                    }
+                    console.log('Accounts', bussines_accounts)
                 }
             }
         })
