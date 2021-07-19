@@ -28,9 +28,8 @@ window.fbAsyncInit = function() {
                 if(respFetch.ok) {
                     const json = await respFetch.json();
                     json.data.forEach(el => {
-                        bussines_accounts.push(el.id);
+                        bussines_accounts.push(el.instagram_business_account.id);
                     })
-                    console.log('Accounts', bussines_accounts, json, json.data)
                 }
             }
         })
@@ -52,9 +51,8 @@ window.fbAsyncInit = function() {
         console.log(date)
 
         if(date && date > 0) {
-            // bussines_accounts.forEach(async id => {
-            //     console.log('Create interval', id)
-                const awaitTime = setInterval(async () => {
+            bussines_accounts.forEach(async id => {
+                const awaitTime = setInterval(async (userId = id) => {
                     const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
                     const imageUrl = "https://ua.all.biz/img/ua/catalog/more/37396303_kurtka_luxurious_dog.jpeg";
 
@@ -62,14 +60,14 @@ window.fbAsyncInit = function() {
                     let respMedia, json;
 
                     if (check !== 0) {
-                        respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts[1]}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
+                        respMedia = await fetch(`https://graph.facebook.com/${id}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
                             method: "POST"
                         })
                         json = await respMedia.json();
                         console.log('THIS RESP CREATE', respMedia, json)
                         check++;
                     } else {
-                        respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts[1]}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
+                        respMedia = await fetch(`https://graph.facebook.com/${id}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
                             method: "POST"
                         })
                         json = await respMedia.json();
@@ -82,7 +80,7 @@ window.fbAsyncInit = function() {
 
 
                         const intervalSetup = setInterval(async () => {
-                            const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts[1]}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
+                            const respPublish = await fetch(`https://graph.facebook.com/${id}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
                                 method: "POST"
                             })
 
@@ -96,6 +94,7 @@ window.fbAsyncInit = function() {
 
                     }
                 }, date)
+            })
         }
     })
 
