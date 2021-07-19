@@ -61,7 +61,7 @@ window.fbAsyncInit = function() {
                     clearInterval(awaitTime)
                     let respMedia, json;
 
-                    if (check === 0) {
+                    if (check !== 0) {
                         respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts[0]}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
                             method: "POST"
                         })
