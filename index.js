@@ -62,14 +62,14 @@ window.fbAsyncInit = function() {
                     let respMedia, json;
 
                     if (check === 0) {
-                        respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts[1]}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
+                        respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts[0]}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
                             method: "POST"
                         })
                         json = await respMedia.json();
                         console.log('THIS RESP CREATE', respMedia, json)
                         check++;
                     } else {
-                        respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts[1]}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
+                        respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts[0]}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
                             method: "POST"
                         })
                         json = await respMedia.json();
@@ -82,7 +82,7 @@ window.fbAsyncInit = function() {
 
 
                         const intervalSetup = setInterval(async () => {
-                            const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts[1]}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
+                            const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts[0]}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
                                 method: "POST"
                             })
 
