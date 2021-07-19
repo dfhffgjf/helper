@@ -57,20 +57,20 @@ window.fbAsyncInit = function() {
             const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
             const imageUrl = "https://vistapointe.net/images/catdog-5.jpg";
 
-            let respMedia;
+            let respMedia, json;
 
             if(check === 0) {
                 respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
                     method: "POST"
                 })
-                const json = await respMedia.json();
+                json = await respMedia.json();
                 console.log('THIS RESP CREATE', respMedia, json)
                 check++;
             } else {
                 respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
                     method: "POST"
                 })
-                const json = await respMedia.json();
+                json = await respMedia.json();
                 console.log('THIS RESP CREATE', respMedia, json)
             }
 
