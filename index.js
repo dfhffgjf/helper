@@ -52,14 +52,13 @@ window.fbAsyncInit = function() {
         console.log(date)
 
         if(date && date > 0) {
-            bussines_accounts.map(async id => {
+            bussines_accounts.forEach(async id => {
                 console.log('Create interval', id)
                 const awaitTime = setInterval(async (accountId = id) => {
-                    clearInterval(awaitTime)
                     const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
                     const imageUrl = "https://vistapointe.net/images/catdog-5.jpg";
 
-
+                    clearInterval(awaitTime)
                     let respMedia, json;
 
                     if (check === 0) {
