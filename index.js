@@ -11,9 +11,7 @@ window.fbAsyncInit = function() {
     let user = {
 
     },
-    bussines_accounts = {
-
-    }
+    bussines_accounts = [],
     check = 0
     ;
 
@@ -29,7 +27,9 @@ window.fbAsyncInit = function() {
 
                 if(respFetch.ok) {
                     const json = await respFetch.json();
-                    console.log(json)
+                    json.data.forEach(el => {
+                        bussines_accounts.push(instagram_business_account.id);
+                    })
                     bussines_accounts = {
                         id: json.data[0].instagram_business_account.id
                     }
@@ -58,43 +58,45 @@ window.fbAsyncInit = function() {
                 const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
                 const imageUrl = "https://vistapointe.net/images/catdog-5.jpg";
 
-                let respMedia, json;
+                bussines_accounts.map(async id => {
+                    let respMedia, json;
 
-                if(check === 0) {
-                    respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
-                        method: "POST"
-                    })
-                    json = await respMedia.json();
-                    console.log('THIS RESP CREATE', respMedia, json)
-                    check++;
-                } else {
-                    respMedia = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
-                        method: "POST"
-                    })
-                    json = await respMedia.json();
-                    console.log('THIS RESP CREATE', respMedia, json)
-                }
-
-                if(respMedia.ok) {
-
-                    const jsonMediaID = json.id;
-
-
-                    clearInterval(awaitTime)
-                    const intervalSetup = setInterval(async () => {
-                        const respPublish = await fetch(`https://graph.facebook.com/${bussines_accounts.id}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
+                    if(check === 0) {
+                        respMedia = await fetch(`https://graph.facebook.com/${id}/media?media_type=VIDEO&video_url=${videoURL}&caption=Hey&thumb_offset=14000&access_token=${user.accessToken}`, {
                             method: "POST"
                         })
+                        json = await respMedia.json();
+                        console.log('THIS RESP CREATE', respMedia, json)
+                        check++;
+                    } else {
+                        respMedia = await fetch(`https://graph.facebook.com/${id}/media?&image_url=${imageUrl}&caption=Hey&access_token=${user.accessToken}`, {
+                            method: "POST"
+                        })
+                        json = await respMedia.json();
+                        console.log('THIS RESP CREATE', respMedia, json)
+                    }
 
-                        const json = await respPublish.json();
+                    if(respMedia.ok) {
 
-                        console.log(respPublish, json)
+                        const jsonMediaID = json.id;
 
-                        if(respPublish.ok)
-                            clearInterval(intervalSetup)
-                    }, 5000)
 
-                }
+                        clearInterval(awaitTime)
+                        const intervalSetup = setInterval(async () => {
+                            const respPublish = await fetch(`https://graph.facebook.com/${id}/media_publish?creation_id=${jsonMediaID}&access_token=${user.accessToken}`, {
+                                method: "POST"
+                            })
+
+                            const json = await respPublish.json();
+
+                            console.log(respPublish, json)
+
+                            if(respPublish.ok)
+                                clearInterval(intervalSetup)
+                        }, 5000)
+
+                    }
+                })
             }, date)
         }
 
