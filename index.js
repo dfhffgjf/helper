@@ -56,7 +56,7 @@ window.fbAsyncInit = function() {
             //     console.log('Create interval', id)
                 const awaitTime = setInterval(async () => {
                     const videoURL = "https://cdn.videvo.net/videvo_files/video/premium/video0238/small_watermarked/06_day_part_II_729_wide_lednik_preview.mp4";
-                    const imageUrl = "https://vistapointe.net/images/catdog-5.jpg";
+                    const imageUrl = "https://ua.all.biz/img/ua/catalog/more/37396303_kurtka_luxurious_dog.jpeg";
 
                     clearInterval(awaitTime)
                     let respMedia, json;
