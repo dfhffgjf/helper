@@ -45,7 +45,7 @@ window.fbAsyncInit = function() {
     })
 
     document.querySelector('.create-post').addEventListener("click", async () => {
-        if(!bussines_accounts.length === 0) {
+        if(bussines_accounts.length === 0) {
             console.log('ERROR BUSSINES ACCTOUNTS')
             return false
         }
