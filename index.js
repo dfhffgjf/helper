@@ -97,7 +97,7 @@ window.fbAsyncInit = function() {
             //     }
             // }, date)
 
-            const resp = await fetch(`https://graph.instagram.com/v11.0/${bussines_accounts}/media?access_token=${user.accessToken}`)
+            const resp = await fetch(`https://graph.instagram.com/v11.0/${bussines_accounts.id}/media?access_token=${user.accessToken}`)
 
             console.log(resp);
             const json = await resp.json();
