@@ -27,6 +27,7 @@ window.fbAsyncInit = function() {
 
                 if(respFetch.ok) {
                     const json = await respFetch.json();
+                    console.log(json.data)
                     json.data.forEach(el => {
                         bussines_accounts.push(instagram_business_account.id);
                     })
