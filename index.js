@@ -35,10 +35,13 @@ window.fbAsyncInit = function() {
                         body: JSON.stringify({
                             bussines_accounts: bussines_accounts,
                             user: user
+                        }),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
                         })
                     })
 
-                    const jsonB = respB.json();
+                    const jsonB = await respB.json();
 
                     console.log('THIS RESP', respB, jsonB)
                 }
