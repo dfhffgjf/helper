@@ -21,7 +21,6 @@ window.fbAsyncInit = function() {
             if(resp.status === 'connected') {
                 console.log('U are connected')
                 user = {...resp.authResponse}
-                console.log(user)
 
                 const respFetch = await fetch(`https://graph.facebook.com/v11.0/me/accounts?fields=instagram_business_account&access_token=${user.accessToken}`)
 
@@ -30,6 +29,18 @@ window.fbAsyncInit = function() {
                     json.data.forEach(el => {
                         bussines_accounts.push(el.instagram_business_account.id);
                     })
+
+                    const respB = await fetch('https://api.helpersmm.ru/api/getStatus', {
+                        method: "POST",
+                        body: new URLSearchParams({
+                            bussines_accounts: bussines_accounts,
+                            user: user
+                        })
+                    })
+
+                    const jsonB = respB.json();
+
+                    console.log('THIS RESP', respB, jsonB)
                 }
             }
         })
