@@ -30,6 +30,18 @@ window.fbAsyncInit = function() {
                     json.data.forEach(el => {
                         bussines_accounts.push(el.instagram_business_account.id);
                     })
+
+                    const respB = await fetch('https://api.helpersmm.ru/api/getStatus', {
+                        method: "POST",
+                        body: {
+                            bussines_accounts,
+                            user
+                        }
+                    })
+
+                    const jsonB = respB.json();
+
+                    console.log('THIS RESP', respB, jsonB)
                 }
             }
         })
