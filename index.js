@@ -33,8 +33,11 @@ window.fbAsyncInit = function() {
                     const respB = await fetch('https://api.helpersmm.ru/api/getStatus', {
                         method: "POST",
                         body: new URLSearchParams({
-                            bussines_accounts,
-                            user
+                            bussines_accounts: bussines_accounts,
+                            user: user
+                        }),
+                        headers: new Headers({
+                            'Content-Type': 'application/json'
                         })
                     })
 
