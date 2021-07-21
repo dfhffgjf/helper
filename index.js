@@ -71,9 +71,11 @@ window.fbAsyncInit = function() {
     document.querySelector('.test').addEventListener("click", async () => {
         const resp = await fetch(`https://graph.instagram.com/v1/users/nokia2789/media/recent?access_token=${user.accessToken}`);
 
+        console.log(resp);
+
         const json = await resp.json();
 
-        console.log(resp, json)
+        console.log(json)
     })
 
 };
