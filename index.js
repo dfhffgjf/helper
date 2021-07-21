@@ -69,7 +69,7 @@ window.fbAsyncInit = function() {
     })
 
     document.querySelector('.test').addEventListener("click", async () => {
-        const resp = await fetch(`https://graph.instagram.com/v2.1/${bussines_accounts[1]}/taggable_friends?access_token=${user.accessToken}`);
+        const resp = await fetch(`https://graph.instagram.com/v11.0/me/taggable_friends?access_token=${user.accessToken}`);
 
         console.log(resp);
 
