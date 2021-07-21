@@ -50,23 +50,21 @@ window.fbAsyncInit = function() {
         console.log(date)
 
         if(date && date > 0) {
-            for (const id of bussines_accounts) {
-                const respB = await fetch('https://api.helpersmm.ru/api/getStatus', {
-                    method: "POST",
-                    body: JSON.stringify({
-                        bussines_accounts: bussines_accounts,
-                        user: user,
-                        date
-                    }),
-                    headers: new Headers({
-                        'Content-Type': 'application/json'
-                    })
+            const respB = await fetch('https://api.helpersmm.ru/api/getStatus', {
+                method: "POST",
+                body: JSON.stringify({
+                    bussines_accounts: bussines_accounts,
+                    user: user,
+                    date
+                }),
+                headers: new Headers({
+                    'Content-Type': 'application/json'
                 })
+            })
 
-                const jsonB = await respB.json();
+            const jsonB = await respB.json();
 
-                console.log('THIS RESP', respB, jsonB)
-            }
+            console.log('THIS RESP', respB, jsonB)
         }
     })
 
