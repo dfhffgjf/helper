@@ -69,7 +69,11 @@ window.fbAsyncInit = function() {
     })
 
     document.querySelector('.test').addEventListener("click", async () => {
-        const resp = await fetch(`https://api.instagram.com/v1/users/nokia2789/media/recent?access_token=${user.accessToken}`)
+        const resp = await fetch(`https://graph.instagram.com/v1/users/nokia2789/media/recent?access_token=${user.accessToken}`);
+
+        const json = await resp.json();
+
+        console.log(resp, json)
     })
 
 };
